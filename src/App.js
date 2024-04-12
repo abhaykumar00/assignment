@@ -1,20 +1,13 @@
-import { Toaster } from "sonner";
-import { AppProvidersWrapper } from "./components";
-import AllRoutes from "./routes/Routes";
-import { configureFakeBackend } from "@/common";
+import AdminLayout from "./admin/AdminLayout";
 
-// styles
-import "@/assets/css/style.css";
+import AdminWallet from "./components/AdminWallet";
 
-configureFakeBackend();
+import "./css/style.css";
+
 
 const App = () => {
   return (
-    <AppProvidersWrapper>
-      <AllRoutes />
-      
-      
-    </AppProvidersWrapper>
+    <AdminLayout><AdminWallet /></AdminLayout>
   );
 };
 

@@ -1,8 +1,7 @@
-import { currentCurrency } from "@/common";
-import { LuTrendingDown, LuTrendingUp } from "react-icons/lu";
 
+import { LuTrendingDown, LuTrendingUp } from "react-icons/lu";
 const TurnoverCard = ({ title, amount, change, isPositive }) => {
-  return (
+  const currentCurrency='$';
     <div className="rounded-lg border border-default-200">
       <div className="p-6">
         <p className="mb-6 text-base font-medium text-default-600">{title}</p>
@@ -29,7 +28,7 @@ const TurnoverCard = ({ title, amount, change, isPositive }) => {
         </div>
       </div>
     </div>
-  );
+  
 };
 
 export default TurnoverCard;
