@@ -3,7 +3,7 @@ import { useSpring, animated } from "@react-spring/web";
 import { Button } from "@mui/material";
 import { BezierCurveEditor } from "react-bezier-curve-editor";
 
-const Counter = () => {
+const Counter = ({ setCountForAnimation, setBgColr }) => {
   const [count, setCount] = useState(0);
   const [{ backgroundColor }, setBackground] = useSpring(() => ({
     backgroundColor: "lightgrey",
@@ -11,17 +11,26 @@ const Counter = () => {
   }));
 
   const increment = () => {
-    if (count < 20) setCount(count + 1);
+    if (count < 20) {
+      setCount(count + 1);
+      setCountForAnimation(count + 1);
+    }
   };
   const decrement = () => {
-    if (count > 0) setCount(count - 1);
+    if (count > 0) {
+      setCount(count - 1);
+      setCountForAnimation(count - 1);
+    }
   };
   const reset = () => {
     setCount(0);
+    setCountForAnimation(0);
+    setBgColr({ backgroundColor: "black" });
     setBackground({ backgroundColor: "black" });
   };
 
   setBackground({ backgroundColor: `rgb(${count * 10}, 0, 0)` });
+  setBgColr({ backgroundColor: `rgb(${count * 10}, 0, 0)` });
 
   const [controlPoints, setControlPoints] = useState([
     { x: 0, y: 0 },
@@ -46,19 +55,7 @@ const Counter = () => {
           position: "absolute",
           overflow: "hidden",
         }}
-      >
-        <animated.div
-          style={{
-            position: "absolute",
-            bottom: "90px",
-            left: "0",
-            height: "50px",
-            width: `${count * 5}%`,
-            backgroundColor,
-            borderRadius: "20px",
-          }}
-        />
-      </div>
+      ></div>
       <Button
         style={{ margin: "10px" }}
         onClick={increment}
